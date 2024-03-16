@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwrr3ct8mjv52"]
 
 [ext_resource type="Script" path="res://scripts/extra_move.gd" id="1_tyath"]
-[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="2_wl6ex"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://art/IFC WILDRODEO Bold 2.ttf" id="2_wl6ex"]
 
 [node name="extra_move" type="Node2D"]
 z_index = 10

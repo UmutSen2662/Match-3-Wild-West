@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/round_over_menu.gd" id="1_kv2xw"]
 [ext_resource type="Texture2D" uid="uid://bvedd0vioap7t" path="res://art/End Panel.png" id="2_f5mck"]
-[ext_resource type="FontFile" uid="uid://dk0qyrpyqjt8u" path="res://STENCIL.TTF" id="3_5wxpb"]
-[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="3_aftwt"]
+[ext_resource type="FontFile" uid="uid://dk0qyrpyqjt8u" path="res://art/STENCIL.TTF" id="3_5wxpb"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://art/IFC WILDRODEO Bold 2.ttf" id="3_aftwt"]
 [ext_resource type="Texture2D" uid="uid://xajgk8jmr7qc" path="res://art/buttons/Green wide button.png" id="4_0n2s4"]
 [ext_resource type="Texture2D" uid="uid://dudrfykrv3ov" path="res://art/buttons/Green wide pressed.png" id="5_d2rby"]
 

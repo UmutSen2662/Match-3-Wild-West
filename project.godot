@@ -14,10 +14,10 @@ config/name="Match 3 Wild West"
 run/main_scene="res://scenes/start_screen.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
-boot_splash/image="res://Match 3 Wild West.png"
+boot_splash/image="res://art/Match 3 Wild West.png"
 boot_splash/fullsize=false
-config/icon="res://Match 3 Wild West android.png"
-config/windows_native_icon="res://Match 3 Wild West.ico"
+config/icon="res://art/Match 3 Wild West android.png"
+config/windows_native_icon="res://art/Match 3 Wild West.ico"
 boot_splash/minimum_display_time=5
 
 [autoload]

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d4epgcoige8ib" path="res://art/buttons/Sound Off CheckButton.png" id="5_5t6ck"]
 [ext_resource type="Texture2D" uid="uid://cieehoq26868v" path="res://art/buttons/Play button.png" id="5_t6onj"]
 [ext_resource type="Texture2D" uid="uid://ca0b1ingr2xwh" path="res://art/buttons/Play button pressed.png" id="6_3xcpq"]
-[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="7_vxbr4"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://art/IFC WILDRODEO Bold 2.ttf" id="7_vxbr4"]
 
 [sub_resource type="Animation" id="Animation_wiw4m"]
 length = 0.001

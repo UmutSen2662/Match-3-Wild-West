@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://rglvvbg64isa"]
 
 [ext_resource type="Script" path="res://scripts/streak.gd" id="1_s77df"]
-[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="2_flsca"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://art/IFC WILDRODEO Bold 2.ttf" id="2_flsca"]
 
 [node name="streak" type="Node2D"]
 z_index = 10

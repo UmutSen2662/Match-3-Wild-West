@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://crl67gbexq82" path="res://art/buttons/Settings Button.png" id="6_ruxnj"]
 [ext_resource type="Texture2D" uid="uid://cwghycctrya50" path="res://art/buttons/Settings Button Pressed.png" id="7_4tqww"]
 [ext_resource type="Texture2D" uid="uid://ctjmrdc6hwjuv" path="res://art/buttons/Back button pressed.png" id="7_b7edx"]
-[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="7_royqf"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://art/IFC WILDRODEO Bold 2.ttf" id="7_royqf"]
 [ext_resource type="PackedScene" uid="uid://us1tlwgjsf6e" path="res://scenes/pause_menu.tscn" id="8_8c4nf"]
 
 [node name="start_screen" type="CanvasLayer"]
