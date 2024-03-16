@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://bnqqdd1wfkyv3"]
+
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_ju5dt"]
+[ext_resource type="Texture2D" uid="uid://d3heo1ac4p6tc" path="res://art/background v3.jpg" id="2_7cm1r"]
+[ext_resource type="Texture2D" uid="uid://c6hiffwy3rcrj" path="res://art/Empty Panel.png" id="3_5lhbs"]
+[ext_resource type="Texture2D" uid="uid://cieehoq26868v" path="res://art/buttons/Play button.png" id="4_8ewke"]
+[ext_resource type="Texture2D" uid="uid://ca0b1ingr2xwh" path="res://art/buttons/Play button pressed.png" id="5_usvgj"]
+[ext_resource type="Texture2D" uid="uid://d1eg01b1ncohr" path="res://art/buttons/Back Button.png" id="6_nmblt"]
+[ext_resource type="Texture2D" uid="uid://crl67gbexq82" path="res://art/buttons/Settings Button.png" id="6_ruxnj"]
+[ext_resource type="Texture2D" uid="uid://cwghycctrya50" path="res://art/buttons/Settings Button Pressed.png" id="7_4tqww"]
+[ext_resource type="Texture2D" uid="uid://ctjmrdc6hwjuv" path="res://art/buttons/Back button pressed.png" id="7_b7edx"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="7_royqf"]
+[ext_resource type="PackedScene" uid="uid://us1tlwgjsf6e" path="res://scenes/pause_menu.tscn" id="8_8c4nf"]
+
+[node name="start_screen" type="CanvasLayer"]
+script = ExtResource("1_ju5dt")
+
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1136.0
+grow_vertical = 2
+texture = ExtResource("2_7cm1r")
+stretch_mode = 6
+
+[node name="Title" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 16
+
+[node name="TitleBackground" type="TextureRect" parent="Title"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("3_5lhbs")
+
+[node name="Title" type="Label" parent="Title"]
+custom_minimum_size = Vector2(530, 280)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -8
+theme_override_constants/shadow_outline_size = 20
+theme_override_fonts/font = ExtResource("7_royqf")
+theme_override_font_sizes/font_size = 120
+text = "MATCH 3
+WILD WEST"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -380.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 30
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 180
+
+[node name="start" type="TextureButton" parent="MarginContainer/Buttons"]
+custom_minimum_size = Vector2(280, 210)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_8ewke")
+texture_pressed = ExtResource("5_usvgj")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="QuitAndSettings" type="HBoxContainer" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="quit" type="TextureButton" parent="MarginContainer/Buttons/QuitAndSettings"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("6_nmblt")
+texture_pressed = ExtResource("7_b7edx")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="settings" type="TextureButton" parent="MarginContainer/Buttons/QuitAndSettings"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_ruxnj")
+texture_pressed = ExtResource("7_4tqww")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="pause_menu" parent="." instance=ExtResource("8_8c4nf")]
+
+[connection signal="pressed" from="MarginContainer/Buttons/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/QuitAndSettings/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/QuitAndSettings/settings" to="pause_menu" method="_on_settings_pressed"]

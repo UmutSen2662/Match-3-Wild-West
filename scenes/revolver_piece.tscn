@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cio6nx8f5b8re"]
+
+[ext_resource type="PackedScene" uid="uid://bdewnslmm4blr" path="res://scenes/piece.tscn" id="1_ee4q0"]
+[ext_resource type="Texture2D" uid="uid://d2kfr2a7bvvsa" path="res://art/pieces/revolver.png" id="2_4p5np"]
+
+[node name="revolver_piece" instance=ExtResource("1_ee4q0")]
+color = "revolver"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_4p5np")

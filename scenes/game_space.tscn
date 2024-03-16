@@ -1,0 +1,274 @@
+[gd_scene load_steps=29 format=3 uid="uid://c8cmfba8c6qfn"]
+
+[ext_resource type="Script" path="res://scripts/grid.gd" id="2_511gf"]
+[ext_resource type="Texture2D" uid="uid://bf83dv4rpx1dp" path="res://art/Top UI v 3.png" id="2_najil"]
+[ext_resource type="Texture2D" uid="uid://dovqynpcq6t1f" path="res://art/background v1.jpg" id="3_7np60"]
+[ext_resource type="Script" path="res://scripts/top_ui.gd" id="3_uvogp"]
+[ext_resource type="FontFile" uid="uid://dk0qyrpyqjt8u" path="res://STENCIL.TTF" id="4_2ko2k"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="5_rq4gn"]
+[ext_resource type="PackedScene" uid="uid://us1tlwgjsf6e" path="res://scenes/pause_menu.tscn" id="6_hepal"]
+[ext_resource type="Texture2D" uid="uid://b1n4txx4accwq" path="res://art/buttons/Restart Button.png" id="6_pfi3k"]
+[ext_resource type="Texture2D" uid="uid://7w0g35m3qp1m" path="res://art/buttons/Restart Button Pressed.png" id="7_lsmhc"]
+[ext_resource type="Texture2D" uid="uid://cjq71hg404n7y" path="res://art/buttons/Shuffle Button.png" id="8_nghp1"]
+[ext_resource type="Texture2D" uid="uid://b4o5pjvhe1k67" path="res://art/buttons/Shuffle Button Pressed.png" id="9_emtse"]
+[ext_resource type="Texture2D" uid="uid://crl67gbexq82" path="res://art/buttons/Settings Button.png" id="10_umwul"]
+[ext_resource type="Texture2D" uid="uid://cwghycctrya50" path="res://art/buttons/Settings Button Pressed.png" id="11_p4v42"]
+[ext_resource type="AudioStream" uid="uid://crn35jmjnj4kb" path="res://audio/edited-revolver2.wav" id="13_mtey5"]
+[ext_resource type="PackedScene" uid="uid://q1mtc0v5xkxr" path="res://scenes/round_over_menu.tscn" id="14_h16cq"]
+[ext_resource type="AudioStream" uid="uid://cl6eu1hnr73q3" path="res://audio/edited-explosion2.wav" id="14_n6np5"]
+[ext_resource type="AudioStream" uid="uid://d0tn65nad8gbu" path="res://audio/edited-cork-pop3.wav" id="15_8kq14"]
+[ext_resource type="AudioStream" uid="uid://b560xa83frab1" path="res://audio/swipe/movement-swipe-whoosh-1.wav" id="16_e67u6"]
+[ext_resource type="AudioStream" uid="uid://boueqqfmeacuo" path="res://audio/swipe/movement-swipe-whoosh-2.wav" id="17_3uk31"]
+[ext_resource type="AudioStream" uid="uid://dnjulnvojkqik" path="res://audio/swipe/movement-swipe-whoosh-3.wav" id="18_5jvpj"]
+[ext_resource type="AudioStream" uid="uid://wvbxemqygpcu" path="res://audio/swipe/movement-swipe-whoosh-4.wav" id="19_8u3it"]
+[ext_resource type="AudioStream" uid="uid://ci4kefigvgdsi" path="res://audio/pop/happy-pop-1.wav" id="20_iniox"]
+[ext_resource type="AudioStream" uid="uid://dndp14hpb66ip" path="res://audio/pop/happy-pop-2.wav" id="21_i1k8y"]
+[ext_resource type="AudioStream" uid="uid://bnh8cddki1n6t" path="res://audio/pop/happy-pop-3.wav" id="22_ycsne"]
+[ext_resource type="AudioStream" uid="uid://ch0rmlg06p4sp" path="res://audio/pop/marimba-bloop-1.wav" id="23_78g30"]
+[ext_resource type="AudioStream" uid="uid://bfoww1mmrslm1" path="res://audio/pop/marimba-bloop-2.wav" id="24_e21ew"]
+
+[sub_resource type="Gradient" id="Gradient_3crdg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.203922, 0.203922, 0.203922, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lt4o4"]
+gradient = SubResource("Gradient_3crdg")
+
+[node name="Game Space" type="Node2D"]
+process_mode = 1
+
+[node name="ui_elements" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="background" type="TextureRect" parent="ui_elements"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 612.0
+grow_vertical = 2
+texture = ExtResource("3_7np60")
+stretch_mode = 6
+
+[node name="play_position" type="MarginContainer" parent="ui_elements"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 20
+
+[node name="play_surface" type="TextureRect" parent="ui_elements/play_position"]
+custom_minimum_size = Vector2(0, 788)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_lt4o4")
+
+[node name="top_ui_container" type="MarginContainer" parent="ui_elements"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 2
+
+[node name="top_ui" type="TextureRect" parent="ui_elements/top_ui_container"]
+layout_mode = 2
+texture = ExtResource("2_najil")
+expand_mode = 5
+stretch_mode = 5
+script = ExtResource("3_uvogp")
+
+[node name="Numbers" type="HBoxContainer" parent="ui_elements/top_ui_container/top_ui"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 552.0
+offset_bottom = 185.0
+theme_override_constants/separation = 44
+
+[node name="score" type="Label" parent="ui_elements/top_ui_container/top_ui/Numbers"]
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_2ko2k")
+theme_override_font_sizes/font_size = 51
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="moves" type="Label" parent="ui_elements/top_ui_container/top_ui/Numbers"]
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_2ko2k")
+theme_override_font_sizes/font_size = 72
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="highscore" type="Label" parent="ui_elements/top_ui_container/top_ui/Numbers"]
+custom_minimum_size = Vector2(0, 118)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("4_2ko2k")
+theme_override_font_sizes/font_size = 51
+text = "0000"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LabelContainer" type="MarginContainer" parent="ui_elements/top_ui_container/top_ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 21
+theme_override_constants/margin_right = 20
+
+[node name="Labels" type="HBoxContainer" parent="ui_elements/top_ui_container/top_ui/LabelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 44
+
+[node name="score" type="Label" parent="ui_elements/top_ui_container/top_ui/LabelContainer/Labels"]
+custom_minimum_size = Vector2(0, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("5_rq4gn")
+theme_override_font_sizes/font_size = 52
+text = "SCORE"
+horizontal_alignment = 1
+
+[node name="moves" type="Label" parent="ui_elements/top_ui_container/top_ui/LabelContainer/Labels"]
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("5_rq4gn")
+theme_override_font_sizes/font_size = 52
+text = "MOVES"
+horizontal_alignment = 1
+
+[node name="highscore" type="Label" parent="ui_elements/top_ui_container/top_ui/LabelContainer/Labels"]
+custom_minimum_size = Vector2(0, 116)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -4
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("5_rq4gn")
+theme_override_font_sizes/font_size = 52
+text = "HIGH"
+horizontal_alignment = 1
+
+[node name="bottom_ui_container" type="MarginContainer" parent="ui_elements"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_elements/bottom_ui_container"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="reload_button" type="TextureButton" parent="ui_elements/bottom_ui_container/HBoxContainer"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("6_pfi3k")
+texture_pressed = ExtResource("7_lsmhc")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="shuffle_button" type="TextureButton" parent="ui_elements/bottom_ui_container/HBoxContainer"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("8_nghp1")
+texture_pressed = ExtResource("9_emtse")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="pause_button" type="TextureButton" parent="ui_elements/bottom_ui_container/HBoxContainer"]
+custom_minimum_size = Vector2(160, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture_normal = ExtResource("10_umwul")
+texture_pressed = ExtResource("11_p4v42")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("2_511gf")
+width = 8
+height = 12
+offset = 64
+y_offset = 6
+revolver_sound = ExtResource("13_mtey5")
+explosion_sound = ExtResource("14_n6np5")
+cork_sound = ExtResource("15_8kq14")
+swipe_sounds = Array[AudioStream]([ExtResource("16_e67u6"), ExtResource("17_3uk31"), ExtResource("18_5jvpj"), ExtResource("19_8u3it")])
+positive_pop = Array[AudioStream]([ExtResource("20_iniox"), ExtResource("21_i1k8y"), ExtResource("22_ycsne")])
+special_sound = Array[AudioStream]([ExtResource("23_78g30"), ExtResource("24_e21ew")])
+piece_value = 10
+
+[node name="Destroy_Timer" type="Timer" parent="."]
+wait_time = 0.24
+one_shot = true
+
+[node name="Collapse_Timer" type="Timer" parent="."]
+wait_time = 0.24
+one_shot = true
+
+[node name="Refill_Timer" type="Timer" parent="."]
+wait_time = 0.24
+one_shot = true
+
+[node name="empty_button" type="TextureButton" parent="."]
+visible = false
+custom_minimum_size = Vector2(110, 100)
+offset_left = 163.0
+offset_top = 1056.0
+offset_right = 273.0
+offset_bottom = 1156.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="pause_menu" parent="." instance=ExtResource("6_hepal")]
+
+[node name="round_over_menu" parent="." instance=ExtResource("14_h16cq")]
+
+[connection signal="pressed" from="ui_elements/bottom_ui_container/HBoxContainer/reload_button" to="Grid" method="_on_reload_button_pressed"]
+[connection signal="pressed" from="ui_elements/bottom_ui_container/HBoxContainer/shuffle_button" to="Grid" method="_on_shuffle_button_pressed"]
+[connection signal="pressed" from="ui_elements/bottom_ui_container/HBoxContainer/pause_button" to="Grid" method="_on_pause_button_pressed"]
+[connection signal="end_game" from="Grid" to="round_over_menu" method="_on_grid_end_game"]
+[connection signal="pause_game" from="Grid" to="pause_menu" method="_on_grid_pause_game"]
+[connection signal="update_moves" from="Grid" to="ui_elements/top_ui_container/top_ui" method="_on_grid_update_moves"]
+[connection signal="update_score" from="Grid" to="ui_elements/top_ui_container/top_ui" method="_on_grid_update_score"]
+[connection signal="timeout" from="Destroy_Timer" to="Grid" method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="Collapse_Timer" to="Grid" method="_on_collapse_timer_timeout"]
+[connection signal="timeout" from="Refill_Timer" to="Grid" method="_on_refill_timer_timeout"]

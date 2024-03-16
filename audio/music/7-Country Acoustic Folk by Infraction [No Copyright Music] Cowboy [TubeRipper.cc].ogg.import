@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c7x0kfjqcnu1i"
+path="res://.godot/imported/7-Country Acoustic Folk by Infraction [No Copyright Music] Cowboy [TubeRipper.cc].ogg-6dc900d35e6fc7cd2cfb6835a8a740e9.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/7-Country Acoustic Folk by Infraction [No Copyright Music] Cowboy [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/7-Country Acoustic Folk by Infraction [No Copyright Music] Cowboy [TubeRipper.cc].ogg-6dc900d35e6fc7cd2cfb6835a8a740e9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

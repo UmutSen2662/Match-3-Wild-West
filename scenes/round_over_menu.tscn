@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://q1mtc0v5xkxr"]
+
+[ext_resource type="Script" path="res://scripts/round_over_menu.gd" id="1_kv2xw"]
+[ext_resource type="Texture2D" uid="uid://bvedd0vioap7t" path="res://art/End Panel.png" id="2_f5mck"]
+[ext_resource type="FontFile" uid="uid://dk0qyrpyqjt8u" path="res://STENCIL.TTF" id="3_5wxpb"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="3_aftwt"]
+[ext_resource type="Texture2D" uid="uid://xajgk8jmr7qc" path="res://art/buttons/Green wide button.png" id="4_0n2s4"]
+[ext_resource type="Texture2D" uid="uid://dudrfykrv3ov" path="res://art/buttons/Green wide pressed.png" id="5_d2rby"]
+
+[sub_resource type="Animation" id="Animation_wiw4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hiwgl"]
+resource_name = "slide"
+length = 0.3
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(576, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkbxl"]
+_data = {
+"RESET": SubResource("Animation_wiw4m"),
+"slide": SubResource("Animation_hiwgl")
+}
+
+[node name="round_over_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_kv2xw")
+
+[node name="Touch_Blocker" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 884.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 30
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_f5mck")
+stretch_mode = 3
+
+[node name="LabelContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Label" type="Label" parent="MarginContainer/LabelContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -5
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("3_aftwt")
+theme_override_font_sizes/font_size = 100
+text = "ROUND OVER"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="score_label" type="Label" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5wxpb")
+theme_override_font_sizes/font_size = 120
+text = "00000"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 70
+
+[node name="continue_button" type="TextureButton" parent="MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(340, 110)
+layout_mode = 2
+texture_normal = ExtResource("4_0n2s4")
+texture_pressed = ExtResource("5_d2rby")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -3
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("3_aftwt")
+theme_override_font_sizes/font_size = 82
+text = "continue"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rkbxl")
+}
+
+[connection signal="pressed" from="MarginContainer/MarginContainer/continue_button" to="." method="_on_continue_button_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cao52mbmxt3hy"
+path="res://.godot/imported/6-Cinematic Western Dark Country Travel Trailer by Cold Cinema [No Copyright Music] Run All Night [TubeRipper.cc].ogg-abbee92b4433a764863cb66c50d7ac7f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/6-Cinematic Western Dark Country Travel Trailer by Cold Cinema [No Copyright Music] Run All Night [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/6-Cinematic Western Dark Country Travel Trailer by Cold Cinema [No Copyright Music] Run All Night [TubeRipper.cc].ogg-abbee92b4433a764863cb66c50d7ac7f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

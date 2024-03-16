@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwrr3ct8mjv52"]
+
+[ext_resource type="Script" path="res://scripts/extra_move.gd" id="1_tyath"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="2_wl6ex"]
+
+[node name="extra_move" type="Node2D"]
+z_index = 10
+script = ExtResource("1_tyath")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(128, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -6
+theme_override_constants/shadow_outline_size = 18
+theme_override_fonts/font = ExtResource("2_wl6ex")
+theme_override_font_sizes/font_size = 72
+text = "EXTRA MOVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

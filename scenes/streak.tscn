@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://rglvvbg64isa"]
+
+[ext_resource type="Script" path="res://scripts/streak.gd" id="1_s77df"]
+[ext_resource type="FontFile" uid="uid://dheyfetycgtfk" path="res://IFC WILDRODEO Bold 2.ttf" id="2_flsca"]
+
+[node name="streak" type="Node2D"]
+z_index = 10
+script = ExtResource("1_s77df")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathTimer" type="Timer" parent="HBoxContainer"]
+
+[node name="x" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -3
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("2_flsca")
+theme_override_font_sizes/font_size = 42
+text = " x"
+horizontal_alignment = 2
+
+[node name="multiplier" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = -3
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("2_flsca")
+theme_override_font_sizes/font_size = 74
+text = "3"
+
+[connection signal="timeout" from="HBoxContainer/DeathTimer" to="." method="_on_death_timer_timeout"]

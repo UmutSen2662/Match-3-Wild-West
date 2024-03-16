@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt4yayni6v73f"]
+
+[ext_resource type="PackedScene" uid="uid://bdewnslmm4blr" path="res://scenes/piece.tscn" id="1_k1xhl"]
+[ext_resource type="Texture2D" uid="uid://csb3jvjrad2b0" path="res://art/pieces/Barrel.png" id="2_y2pxo"]
+
+[node name="column_piece" instance=ExtResource("1_k1xhl")]
+scale = Vector2(1, 1)
+color = "column"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_y2pxo")

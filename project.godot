@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Match 3 Wild West"
+run/main_scene="res://scenes/start_screen.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/image="res://Match 3 Wild West.png"
+boot_splash/fullsize=false
+config/icon="res://Match 3 Wild West android.png"
+config/windows_native_icon="res://Match 3 Wild West.ico"
+boot_splash/minimum_display_time=5
+
+[autoload]
+
+ConfigManager="*res://scripts/config_manager.gd"
+AudioManager="*res://scenes/audio_manager.tscn"
+
+[display]
+
+window/size/viewport_width=576
+window/size/viewport_height=1210
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
+
+[filesystem]
+
+import/blender/enabled=false
+
+[input]
+
+ui_touch={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

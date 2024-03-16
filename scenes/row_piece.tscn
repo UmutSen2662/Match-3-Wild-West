@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://batx84vnvja2k"]
+
+[ext_resource type="PackedScene" uid="uid://bdewnslmm4blr" path="res://scenes/piece.tscn" id="1_u0u3y"]
+[ext_resource type="Texture2D" uid="uid://bvk54se3b4pho" path="res://art/pieces/Barrel sideways.png" id="2_snq7x"]
+
+[node name="row_piece" instance=ExtResource("1_u0u3y")]
+scale = Vector2(1, 1)
+color = "row"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_snq7x")

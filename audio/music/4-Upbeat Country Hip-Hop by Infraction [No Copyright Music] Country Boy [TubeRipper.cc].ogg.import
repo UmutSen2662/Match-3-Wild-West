@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bl3kwjwpn0qe4"
+path="res://.godot/imported/4-Upbeat Country Hip-Hop by Infraction [No Copyright Music] Country Boy [TubeRipper.cc].ogg-b519d11901a7823ed76fb3d77b74f759.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/4-Upbeat Country Hip-Hop by Infraction [No Copyright Music] Country Boy [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/4-Upbeat Country Hip-Hop by Infraction [No Copyright Music] Country Boy [TubeRipper.cc].ogg-b519d11901a7823ed76fb3d77b74f759.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

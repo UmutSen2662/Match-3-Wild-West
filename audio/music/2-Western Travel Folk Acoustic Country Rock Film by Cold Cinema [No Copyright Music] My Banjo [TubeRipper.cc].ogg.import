@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://3kdy7b56w8u1"
+path="res://.godot/imported/2-Western Travel Folk Acoustic Country Rock Film by Cold Cinema [No Copyright Music] My Banjo [TubeRipper.cc].ogg-d557c3164d3b030ac065983f73e07242.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/2-Western Travel Folk Acoustic Country Rock Film by Cold Cinema [No Copyright Music] My Banjo [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/2-Western Travel Folk Acoustic Country Rock Film by Cold Cinema [No Copyright Music] My Banjo [TubeRipper.cc].ogg-d557c3164d3b030ac065983f73e07242.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

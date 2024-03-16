@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbh7qhrucb8ei"]
+
+[ext_resource type="Texture2D" uid="uid://j1y6pvjpc00d" path="res://art/pieces/bullet_hole2.png" id="1_vkhn3"]
+
+[node name="bullet_hole" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vkhn3")

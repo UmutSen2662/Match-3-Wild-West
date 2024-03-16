@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgo8eqb8t0des"]
+
+[ext_resource type="PackedScene" uid="uid://bdewnslmm4blr" path="res://scenes/piece.tscn" id="1_umkqo"]
+[ext_resource type="Texture2D" uid="uid://b6pn6csk0o22d" path="res://art/pieces/Bomb.png" id="2_xj2jf"]
+
+[node name="bomb_piece" instance=ExtResource("1_umkqo")]
+scale = Vector2(1, 1)
+color = "bomb"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_xj2jf")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdjepgwlq7ejh"
+path="res://.godot/imported/1-Western Summer Feel Good Folk Acoustic Country Pop by Cold Cinema [No Copyright Music] Always Fun [TubeRipper.cc].ogg-e6c22f5fa625e10e362d6580ce608e1a.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/1-Western Summer Feel Good Folk Acoustic Country Pop by Cold Cinema [No Copyright Music] Always Fun [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/1-Western Summer Feel Good Folk Acoustic Country Pop by Cold Cinema [No Copyright Music] Always Fun [TubeRipper.cc].ogg-e6c22f5fa625e10e362d6580ce608e1a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

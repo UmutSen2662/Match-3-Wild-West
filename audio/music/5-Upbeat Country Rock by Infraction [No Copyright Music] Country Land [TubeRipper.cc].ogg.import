@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bjgmsfes7lgxb"
+path="res://.godot/imported/5-Upbeat Country Rock by Infraction [No Copyright Music] Country Land [TubeRipper.cc].ogg-ba10bf16e102578650162ef5befa974d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/5-Upbeat Country Rock by Infraction [No Copyright Music] Country Land [TubeRipper.cc].ogg"
+dest_files=["res://.godot/imported/5-Upbeat Country Rock by Infraction [No Copyright Music] Country Land [TubeRipper.cc].ogg-ba10bf16e102578650162ef5befa974d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

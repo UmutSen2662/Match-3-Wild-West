@@ -1,0 +1,23 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct3ia4vc8she8"]
+
+[ext_resource type="Script" path="res://scripts/audio_manager.gd" id="1_8c86l"]
+[ext_resource type="AudioStream" uid="uid://cdjepgwlq7ejh" path="res://audio/music/1-Western Summer Feel Good Folk Acoustic Country Pop by Cold Cinema [No Copyright Music] Always Fun [TubeRipper.cc].ogg" id="2_01lt1"]
+[ext_resource type="AudioStream" uid="uid://3kdy7b56w8u1" path="res://audio/music/2-Western Travel Folk Acoustic Country Rock Film by Cold Cinema [No Copyright Music] My Banjo [TubeRipper.cc].ogg" id="3_ptpdj"]
+[ext_resource type="AudioStream" uid="uid://bf4lg53wc501p" path="res://audio/music/3-Happy Western Travel Comedy Folk Acoustic Country by Cold Cinema [No Copyright Music] Cowboy Hat [TubeRipper.cc].ogg" id="4_1ap1l"]
+[ext_resource type="AudioStream" uid="uid://bl3kwjwpn0qe4" path="res://audio/music/4-Upbeat Country Hip-Hop by Infraction [No Copyright Music] Country Boy [TubeRipper.cc].ogg" id="5_s8obc"]
+[ext_resource type="AudioStream" uid="uid://bjgmsfes7lgxb" path="res://audio/music/5-Upbeat Country Rock by Infraction [No Copyright Music] Country Land [TubeRipper.cc].ogg" id="6_dnrb6"]
+[ext_resource type="AudioStream" uid="uid://boh5tttlou0ev" path="res://audio/ui-click.wav" id="6_wlgha"]
+[ext_resource type="AudioStream" uid="uid://cao52mbmxt3hy" path="res://audio/music/6-Cinematic Western Dark Country Travel Trailer by Cold Cinema [No Copyright Music] Run All Night [TubeRipper.cc].ogg" id="7_jov6p"]
+[ext_resource type="AudioStream" uid="uid://c7x0kfjqcnu1i" path="res://audio/music/7-Country Acoustic Folk by Infraction [No Copyright Music] Cowboy [TubeRipper.cc].ogg" id="8_n4hdb"]
+
+[node name="audio_manager" type="Node"]
+process_mode = 3
+script = ExtResource("1_8c86l")
+musics = Array[AudioStream]([ExtResource("2_01lt1"), ExtResource("3_ptpdj"), ExtResource("4_1ap1l"), ExtResource("5_s8obc"), ExtResource("6_dnrb6"), ExtResource("7_jov6p"), ExtResource("8_n4hdb")])
+button_sound = ExtResource("6_wlgha")
+
+[node name="music_player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+volume_db = -16.0
+
+[connection signal="finished" from="music_player" to="." method="_on_music_player_finished"]
