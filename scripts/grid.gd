@@ -51,7 +51,6 @@ var extra_move_preload = preload("res://scenes/extra_move.tscn")
 @export var special_sound: Array[AudioStream]
 var explosion_playing = false
 var cork_pop_playing = false
-var revolver_shot = true
 
 # Current pieces in the scene
 var all_pieces = []
@@ -73,13 +72,23 @@ signal update_score
 var current_score = 0
 var streak = 1
 
-# Counter variable
+# Counter variables
 signal update_moves
 var current_moves = 20
 var extra_move_granted = false
 
+# Revolver variavles
+signal revolver_shot
+signal revolver_end
+var revolver_time = 0
+var revolver_shot_count = 0
+var revolver_shooting = false
+var hit_list = []
+var bullet_holes = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	emit_signal("update_moves", current_moves)
 	all_pieces = make_2D_array()
 	spawn_pieces()
@@ -217,45 +226,6 @@ func handle_bombs():
 	cork_pop_playing = false
 	get_parent().get_node("Destroy_Timer").start()
 
-func revolver_action():
-	var hit_list = []
-	var bullet_holes = []
-	var blocks = 26
-	while blocks > 0:
-		blocks-=1
-		randomize()
-		var count = 0
-		var matched = false
-		var i = randi() % width
-		var j = randi() % height
-		while (all_pieces[i][j] == null or matched) and count < 10:
-			count+=1
-			i = randi() % width
-			j = randi() % height
-			if all_pieces[i][j] != null:
-				matched = all_pieces[i][j].matched
-		if all_pieces[i][j] != null:
-			if all_pieces[i][j].color != "revolver" and !all_pieces[i][j].matched:
-				var bullet_hole = bullet_preload.instantiate()
-				add_child(bullet_hole)
-				if revolver_shot:
-					AudioManager.play_sound(revolver_sound)
-					revolver_shot = false
-					await get_tree().create_timer(0.16).timeout
-				else:
-					revolver_shot = true
-				bullet_hole.position = grid_to_pixel(i, j)
-				bullet_hole.rotation_degrees = randi() % 360
-				bullet_holes.append(bullet_hole)
-				hit_list.append(Vector2(i, j))
-	for hole in bullet_holes:
-		hole.queue_free()
-	for vec in hit_list:
-		if all_pieces[vec.x][vec.y] != null:
-			match_and_dim(vec.x, vec.y)
-			if all_pieces[vec.x][vec.y].color in ["bomb", "column", "row"]:
-				bombs[all_pieces[vec.x][vec.y].color].append(Vector2(vec.x, vec.y))
-
 func explode_bomb(col, row):
 	streak+=1
 	state = wait
@@ -286,7 +256,8 @@ func explode_bomb(col, row):
 	emit_signal("update_score", current_score)
 	match type:
 		"revolver":
-			await revolver_action()
+			revolver_shooting = true
+			await revolver_end
 		"bomb":
 			for i in range(max(col-2, 0), min(col+3, width)):
 				for j in range(max(row-2, 0), min(row+3, height)):
@@ -309,8 +280,38 @@ func explode_bomb(col, row):
 	if !bombs.is_empty():
 		handle_bombs()
 
+func revolver_one_shot():
+	var i = randi() % width
+	var j = randi() % height
+	if all_pieces[i][j] != null:
+		if !all_pieces[i][j].matched:
+			var bullet_hole = bullet_preload.instantiate()
+			add_child(bullet_hole)
+			AudioManager.play_sound(revolver_sound)
+			bullet_hole.position = grid_to_pixel(i, j)
+			bullet_hole.rotation_degrees = randi() % 360
+			bullet_holes.append(bullet_hole)
+			hit_list.append(Vector2(i, j))
+			return true
+	return false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	var count = 0
+	if revolver_shooting:
+		revolver_time += _delta
+		if revolver_time > 0.12:
+			var shot = revolver_one_shot()
+			while !shot and count < 10:
+				shot = revolver_one_shot()
+				revolver_shot_count+=1
+				count += 1
+			revolver_shot_count+=1
+			revolver_time = 0
+		if revolver_shot_count > 24:
+			revolver_shooting = false
+			revolver_shot_count = 0
+			emit_signal("revolver_shot")
 	if state == move:
 		touch_input()
 
@@ -544,3 +545,15 @@ func _on_pause_button_pressed():
 func _on_reload_button_pressed():
 	AudioManager.button_click()
 	get_tree().change_scene_to_file("res://scenes/game_space.tscn")
+
+func _on_revolver_shot():
+	for hole in bullet_holes:
+		hole.queue_free()
+	for vec in hit_list:
+		if all_pieces[vec.x][vec.y] != null:
+			match_and_dim(vec.x, vec.y)
+			if all_pieces[vec.x][vec.y].color in ["bomb", "column", "row", "revolver"]:
+				bombs[all_pieces[vec.x][vec.y].color].append(Vector2(vec.x, vec.y))
+	bullet_holes.clear()
+	hit_list.clear()
+	emit_signal("revolver_end")

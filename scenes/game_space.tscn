@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b4o5pjvhe1k67" path="res://art/buttons/Shuffle Button Pressed.png" id="9_emtse"]
 [ext_resource type="Texture2D" uid="uid://crl67gbexq82" path="res://art/buttons/Settings Button.png" id="10_umwul"]
 [ext_resource type="Texture2D" uid="uid://cwghycctrya50" path="res://art/buttons/Settings Button Pressed.png" id="11_p4v42"]
-[ext_resource type="AudioStream" uid="uid://crn35jmjnj4kb" path="res://audio/edited-revolver2.wav" id="13_mtey5"]
+[ext_resource type="AudioStream" uid="uid://dnmow4qpdxtlu" path="res://audio/1903-springfield-low.wav" id="13_xur8m"]
 [ext_resource type="PackedScene" uid="uid://q1mtc0v5xkxr" path="res://scenes/round_over_menu.tscn" id="14_h16cq"]
 [ext_resource type="AudioStream" uid="uid://cl6eu1hnr73q3" path="res://audio/edited-explosion2.wav" id="14_n6np5"]
 [ext_resource type="AudioStream" uid="uid://d0tn65nad8gbu" path="res://audio/edited-cork-pop3.wav" id="15_8kq14"]
@@ -226,7 +226,7 @@ width = 8
 height = 12
 offset = 64
 y_offset = 6
-revolver_sound = ExtResource("13_mtey5")
+revolver_sound = ExtResource("13_xur8m")
 explosion_sound = ExtResource("14_n6np5")
 cork_sound = ExtResource("15_8kq14")
 swipe_sounds = Array[AudioStream]([ExtResource("16_e67u6"), ExtResource("17_3uk31"), ExtResource("18_5jvpj"), ExtResource("19_8u3it")])
@@ -267,6 +267,7 @@ stretch_mode = 0
 [connection signal="pressed" from="ui_elements/bottom_ui_container/HBoxContainer/pause_button" to="Grid" method="_on_pause_button_pressed"]
 [connection signal="end_game" from="Grid" to="round_over_menu" method="_on_grid_end_game"]
 [connection signal="pause_game" from="Grid" to="pause_menu" method="_on_grid_pause_game"]
+[connection signal="revolver_shot" from="Grid" to="Grid" method="_on_revolver_shot"]
 [connection signal="update_moves" from="Grid" to="ui_elements/top_ui_container/top_ui" method="_on_grid_update_moves"]
 [connection signal="update_score" from="Grid" to="ui_elements/top_ui_container/top_ui" method="_on_grid_update_score"]
 [connection signal="timeout" from="Destroy_Timer" to="Grid" method="_on_destroy_timer_timeout"]
