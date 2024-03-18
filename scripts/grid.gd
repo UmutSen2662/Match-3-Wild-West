@@ -1,6 +1,5 @@
 extends Node2D
 # State machine
-var rng = RandomNumberGenerator.new()
 enum {wait, move, over}
 var state
 
@@ -54,7 +53,7 @@ var cork_pop_playing = false
 
 # Current pieces in the scene
 var all_pieces = []
-var bombs = {
+var exploding_bombs = {
 	"revolver": [],
 	"bomb": [],
 	"column": [],
@@ -197,28 +196,27 @@ func touch_difference(grid_1, grid_2):
 			swap_pieces(grid_1.x, grid_1.y, Vector2(0,-1))
 		elif difference.y < 0:
 			swap_pieces(grid_1.x, grid_1.y, Vector2(0,1))
-	else:
-		if all_pieces[grid_1.x][grid_1.y].color in ["bomb", "column", "row", "revolver"]:
-			current_moves-=1
-			streak = 1
-			bombs[all_pieces[grid_1.x][grid_1.y].color].append(Vector2(grid_1.x, grid_1.y))
-			handle_bombs()
+	elif all_pieces[grid_1.x][grid_1.y].color in ["bomb", "column", "row", "revolver"]:
+		current_moves-=1
+		streak = 1
+		exploding_bombs[all_pieces[grid_1.x][grid_1.y].color].append(Vector2(grid_1.x, grid_1.y))
+		handle_bombs()
 	emit_signal("update_moves", current_moves)
 
 func handle_bombs():
 	var type = null
-	if !bombs["bomb"].is_empty():
+	if !exploding_bombs["bomb"].is_empty():
 		type = "bomb"
-	elif !bombs["column"].is_empty():
+	elif !exploding_bombs["column"].is_empty():
 		type = "column"
-	elif !bombs["row"].is_empty():
+	elif !exploding_bombs["row"].is_empty():
 		type = "row"
-	elif !bombs["revolver"].is_empty():
+	elif !exploding_bombs["revolver"].is_empty():
 		type = "revolver"
 	if type != null:
-		var vec = bombs[type].pop_front()
-		while all_pieces[vec.x][vec.y] == null and !bombs[type].is_empty():
-			vec = bombs[type].pop_front()
+		var vec = exploding_bombs[type].pop_front()
+		while all_pieces[vec.x][vec.y] == null and !exploding_bombs[type].is_empty():
+			vec = exploding_bombs[type].pop_front()
 		if all_pieces[vec.x][vec.y] != null:
 			explode_bomb(vec.x, vec.y)
 			return
@@ -262,23 +260,22 @@ func explode_bomb(col, row):
 			for i in range(max(col-2, 0), min(col+3, width)):
 				for j in range(max(row-2, 0), min(row+3, height)):
 					if all_pieces[i][j] != null:
+						if all_pieces[i][j].color in ["bomb", "column", "row", "revolver"] and !all_pieces[i][j].matched:
+							exploding_bombs[all_pieces[i][j].color].append(Vector2(i, j))
 						match_and_dim(i, j)
-						if all_pieces[i][j].color in ["bomb", "column", "row", "revolver"]:
-							bombs[all_pieces[i][j].color].append(Vector2(i, j))
 		"column":
 			for i in height:
 				if all_pieces[col][i] != null:
+					if all_pieces[col][i].color in ["bomb", "column", "row", "revolver"] and !all_pieces[col][i].matched:
+						exploding_bombs[all_pieces[col][i].color].append(Vector2(col, i))
 					match_and_dim(col, i)
-					if all_pieces[col][i].color in ["bomb", "column", "row", "revolver"]:
-						bombs[all_pieces[col][i].color].append(Vector2(col, i))
 		"row":
 			for i in width:
 				if all_pieces[i][row] != null:
+					if all_pieces[i][row].color in ["bomb", "column", "row", "revolver"] and !all_pieces[i][row].matched:
+						exploding_bombs[all_pieces[i][row].color].append(Vector2(i, row))
 					match_and_dim(i, row)
-					if all_pieces[i][row].color in ["bomb", "column", "row", "revolver"]:
-						bombs[all_pieces[i][row].color].append(Vector2(i, row))
-	if !bombs.is_empty():
-		handle_bombs()
+	handle_bombs()
 
 func revolver_one_shot():
 	var i = randi() % width
@@ -295,23 +292,28 @@ func revolver_one_shot():
 			return true
 	return false
 
+func revolver_process_helper(_delta):
+	revolver_time += _delta
+	if revolver_time > 0.12:
+		var count = 0
+		var shot = revolver_one_shot()
+		while !shot and count < 8:
+			shot = revolver_one_shot()
+			revolver_shot_count+=1
+			count += 1
+		if count == 8:
+			revolver_shot_count = 20
+		revolver_shot_count+=1
+		revolver_time = 0
+	if revolver_shot_count > 20:
+		revolver_shooting = false
+		revolver_shot_count = 0
+		emit_signal("revolver_shot")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var count = 0
 	if revolver_shooting:
-		revolver_time += _delta
-		if revolver_time > 0.12:
-			var shot = revolver_one_shot()
-			while !shot and count < 10:
-				shot = revolver_one_shot()
-				revolver_shot_count+=1
-				count += 1
-			revolver_shot_count+=1
-			revolver_time = 0
-		if revolver_shot_count > 24:
-			revolver_shooting = false
-			revolver_shot_count = 0
-			emit_signal("revolver_shot")
+		revolver_process_helper(_delta)
 	if state == move:
 		touch_input()
 
@@ -434,9 +436,11 @@ func destroy_matched():
 	find_bombs()
 	extra_move_granted = false
 	var was_matched = false
+	var board_empty = true
 	for i in width:
 		for j in height:
 			if all_pieces[i][j] != null:
+				board_empty = false
 				if all_pieces[i][j].matched:
 					was_matched = true
 					all_pieces[i][j].queue_free()
@@ -444,7 +448,7 @@ func destroy_matched():
 					current_score = current_score + piece_value * streak
 					emit_signal("update_score", current_score)
 	move_checked = true
-	if was_matched:
+	if was_matched or board_empty:
 		get_parent().get_node("Collapse_Timer").start()
 	else:
 		swap_back()
@@ -551,9 +555,11 @@ func _on_revolver_shot():
 		hole.queue_free()
 	for vec in hit_list:
 		if all_pieces[vec.x][vec.y] != null:
+			if all_pieces[vec.x][vec.y].color in ["bomb", "column", "row", "revolver"] and !all_pieces[vec.x][vec.y].matched:
+				exploding_bombs[all_pieces[vec.x][vec.y].color].append(Vector2(vec.x, vec.y))
 			match_and_dim(vec.x, vec.y)
-			if all_pieces[vec.x][vec.y].color in ["bomb", "column", "row", "revolver"]:
-				bombs[all_pieces[vec.x][vec.y].color].append(Vector2(vec.x, vec.y))
 	bullet_holes.clear()
 	hit_list.clear()
+	cork_pop_playing = false
+	explosion_playing = false
 	emit_signal("revolver_end")
