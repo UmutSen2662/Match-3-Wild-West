@@ -1,7 +1,6 @@
 # Match 3 Wild West
 
 Match 3 Wild West is a simple highscore based match 3 game made in godot [godot 4.2.1](https://godotengine.org/download/archive/4.2.1-stable/) I made this game to start learning godot game devolopment so it is very much spaghetti code.
-![Match 3 image (4)](https://github.com/UmutSen2662/Match-3-Wild-West/assets/163651345/68136ebc-191c-4843-9394-bb96638cc5c8)
 
 ## Installation
 
